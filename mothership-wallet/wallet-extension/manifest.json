@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Mothership Wallet",
+  "short_name": "Mothership",
+  "version": "0.5.0",
+  "description": "Alien-themed, MetaMask-style wallet for Dead Space Chain + wDEAD bridge.",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Mothership Wallet"
+  },
+  "icons": {
+    "16": "public/icon-16.png",
+    "48": "public/icon-48.png",
+    "128": "public/icon-128.png"
+  },
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "*://localhost:*/*",
+    "*://127.0.0.1:*/*",
+    "https://*/*",
+    "http://*/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
