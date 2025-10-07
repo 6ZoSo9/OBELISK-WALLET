@@ -1,9 +1,19 @@
-# Obelisk Wallet (placeholder)
+# Obelisk Wallet — Dev Ready
 
-This is a placeholder scaffold to establish authorship and structure.
-Real implementation will follow.
+Interface to **VOID**. Rewards in **VoidStones ($VOID)**.
 
-```
+## Run dev server
+```bash
 yarn
 yarn dev
 ```
+Then open the URL printed by Vite (default http://localhost:5173).
+
+## Configure a token for balance previews
+Set `VITE_VOID_ADDRESS` to a deployed ERC-20 (e.g., VoidStones) to enable balance reads.
+Set `VITE_PUBLIC_RPC` to your RPC (e.g., Sepolia Infura URL).
+
+## Notes
+- Built with Vite + React + Tailwind.
+- Uses `ethers` v6.
+- Future: Ghost/Wraith/Titan toggles with resource caps.
