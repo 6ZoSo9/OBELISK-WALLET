@@ -1,0 +1,10 @@
+{
+  "name": "obelisk-wallet",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "echo \"Obelisk Wallet placeholder dev server\" && node scripts/dev.js",
+    "build": "echo \"build placeholder\"",
+    "test": "echo \"test placeholder\""
+  }
+}

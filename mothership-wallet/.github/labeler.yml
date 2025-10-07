@@ -1,7 +1,0 @@
-# Auto-label files in PRs
-wallet:
-  - 'wallet-extension/**'
-docs:
-  - '**/*.md'
-ci:
-  - '.github/**'

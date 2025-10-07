@@ -1,0 +1,14 @@
+.env
+.env.*
+node_modules/
+dist/
+build/
+.cache/
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+coverage/
+artifacts/
