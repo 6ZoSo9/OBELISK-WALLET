@@ -17,3 +17,7 @@ Set `VITE_PUBLIC_RPC` to your RPC (e.g., Sepolia Infura URL).
 - Built with Vite + React + Tailwind.
 - Uses `ethers` v6.
 - Future: Ghost/Wraith/Titan toggles with resource caps.
+
+© 2025 6ZoSo9 and contributors. All rights reserved.
+Licensed under the VOID Community License (VCL) v1.0. Redistribution, public hosting, or commercial use is prohibited without permission.
+See LICENSE and CLA.md.
