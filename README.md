@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 # Obelisk Wallet — Dev Ready
 
 Interface to **VOID**. Rewards in **VoidStones ($VOID)**.
@@ -21,3 +22,6 @@ Set `VITE_PUBLIC_RPC` to your RPC (e.g., Sepolia Infura URL).
 © 2025 6ZoSo9 and contributors. All rights reserved.
 Licensed under the VOID Community License (VCL) v1.0. Redistribution, public hosting, or commercial use is prohibited without permission.
 See LICENSE and CLA.md.
+=======
+# obelisk-wallet
+>>>>>>> Stashed changes
