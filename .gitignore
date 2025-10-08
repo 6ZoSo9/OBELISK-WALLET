@@ -16,3 +16,4 @@ artifacts/
 .env.*
 !.env.template
 obelisk-wallet/
+obelisk-wallet/
