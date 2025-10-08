@@ -29,6 +29,7 @@ Thumbs.db
 # allow safe template
 
 
+
 # secrets
 .env
 .env.*
