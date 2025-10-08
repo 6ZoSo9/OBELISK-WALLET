@@ -1,33 +1,24 @@
-VOID / Obelisk — Legal Docs Pack
-Generated: 2025-10-07
+# Obelisk Wallet — VOID Balance Integration (v1)
 
-Place these files into BOTH repositories (OBELISK-WALLET and VOID-CHAIN).
-Suggested locations:
-- LICENSE, NOTICE at repo root
-- docs/legal/* (keep all the rest in a 'docs/legal' folder)
+This drop adds ERC‑20 balance reads for VoidStones ($VOID) to the Home screen.
 
-Files:
-- LICENSE (VCL v1.0)            — Source-available license prohibiting forks/redistribution/commercial use.
-- CLA.md                         — Contributor License Agreement.
-- GOVERNANCE.md                  — BDFL model (ZoSo final say).
-- TRADEMARKS.md                  — Trademark policy & usage rules.
-- TERMS_OF_USE.md                — Terms for using the repos and binaries.
-- EULA.md                        — End-User License for distributed binaries.
-- PRIVACY.md                     — Privacy policy (no telemetry by default; update if you add analytics).
-- SECURITY.md                    — Security policy (vuln reporting).
-- DMCA_POLICY.md                 — DMCA takedown process template.
-- THIRD_PARTY_NOTICES.md         — Attributions for dependencies (fill as needed).
-- NOTICE                         — Copyright + project notice.
-- LEGAL.md                       — Central index pointing to all of the above.
+## What’s included
+- `src/lib/abi/erc20.ts` — minimal ERC‑20 ABI
+- `src/lib/format.ts` — bigint to decimal string formatter
+- `src/hooks/useErc20Balance.ts` — React hook to read balance via Ethers v6
+- `src/pages/Home.tsx` — updated to display connection + VOID balance
+- `.env.template` — now includes `VITE_VOID_ADDRESS`
 
-How to apply (example):
-  # at repo root
-  cp LICENSE NOTICE .
-  mkdir -p docs/legal
-  cp docs_legal/* docs/legal/
+## Setup
+1) In `OBELISK-WALLET`:
+```
+cp .env.template .env
+# set VITE_VOID_ADDRESS=0xYourVoidToken
+npm i
+npm run dev
+```
+The balance will display after you connect your wallet and the token address is set.
 
-Then commit:
-  git add LICENSE NOTICE docs/legal
-  git commit -m "legal: add license, terms, trademarks, privacy, DMCA, security"
-  git push
-
+## Notes
+- Reads use `provider.getSigner()` to honor the connected account & network.
+- Error messaging prompts user to set `VITE_VOID_ADDRESS` if missing.
