@@ -1,34 +1,15 @@
-# --- Secrets & env files ---
-!.env.example
-!.env.sample
-!.env.local.example
-
-# dotenv-vault local files
-.env.vault
-.env.keys
-
-# Node / build
 node_modules/
 dist/
-.build/
+build/
 .cache/
-.next/
-out/
-
-# Logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# OS
-.DS_Store
-Thumbs.db
-
-# allow safe template
-
-
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+coverage/
+artifacts/
 
 # secrets
 .env
