@@ -1,25 +1,20 @@
 ---
 name: Feature request
-about: Suggest an idea for VOID / Obelisk
-title: "[Feature] Short description"
+about: Suggest an idea for this project
 labels: enhancement
-assignees: 6ZoSo9
 ---
 
-**Problem / Opportunity**
+### Summary
+Describe the feature you'd like.
 
-**Proposed solution**
+### Motivation
+Why is this feature important for VOID ecosystem users/contributors?
 
-**Alternatives considered**
+### Proposal
+A rough plan for how it might work (UI/API/Contracts).
 
-**Impact**
-- [ ] API change
-- [ ] Wallet UI
-- [ ] Node/Relayer
-- [ ] Docs
+### Alternatives
+Any alternative solutions or features you've considered.
 
-**Definition of done**
-
-**License & CLA**
-- [ ] I acknowledge this project is licensed under the VOID Community License (VCL) v1.0.
-- [ ] I have read and accept the CLA (CLA.md).
+### Additional context
+Links, sketches, references.

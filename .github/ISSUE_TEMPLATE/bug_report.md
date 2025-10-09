@@ -1,26 +1,25 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: "[Bug] Short description"
 labels: bug
-assignees: 6ZoSo9
 ---
 
-**Describe the bug**
+### Describe the bug
 A clear and concise description of what the bug is.
 
-**To Reproduce**
-Steps to reproduce the behavior:
+### To Reproduce
+Steps to reproduce the behavior.
 
-**Expected behavior**
+### Expected behavior
+What you expected to happen.
 
-**Screenshots / Logs**
+### Screenshots / Logs
+If applicable, add screenshots or logs to help explain your problem.
 
-**Environment**
+### Environment
 - OS:
-- Node version:
-- Branch/commit:
+- Node/PNPM/Yarn versions (if relevant):
+- Network (Sepolia/Mainnet/Local):
 
-**License & CLA**
-- [ ] I acknowledge this project is licensed under the VOID Community License (VCL) v1.0.
-- [ ] I have read and accept the CLA (CLA.md).
+### Additional context
+Add any other context about the problem here.

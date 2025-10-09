@@ -1,17 +1,24 @@
-# Contributing
+# Contributing to VOID
 
-Thanks for your interest in VOID / Obelisk.
+Thanks for your interest in contributing!
 
-- By contributing, you agree to the **VOID Community License (VCL)** and the **VOID CLA** (CLA.md).
-- Open an issue to propose features before large changes.
-- Small fixes are welcome via PR.
-- Keep code clean, documented, and tested.
+## Ground Rules
+- Be excellent to each other.
+- Respect the [VOID Community License (VCL) v1.0](LICENSE).
+- Do not commit secrets (.env, RPC keys, private keys).
+- Follow repository coding standards and linters.
+- Prefer small PRs with clear scope.
 
-## Steps
-1. Fork the repo (GitHub).
-2. Create a feature branch.
-3. Submit a PR referencing any related issues.
-4. Sign-off your commits (`git commit -s`) to indicate CLA acceptance.
+## CLA
+By contributing, you certify that you have the right to submit your work
+and you agree to the [VOID Contributor License Agreement](CLA.md).
 
-## Development Notes
-- Follow repository-specific README for install/build instructions.
+## Workflow
+1. Fork and create a feature branch.
+2. Run code checks/lints locally.
+3. Open a PR and complete the checklist.
+4. A maintainer will review and merge when ready.
+
+## Issues
+- Use issue templates to file bugs or feature requests.
+- Provide reproduction steps and environment details.
