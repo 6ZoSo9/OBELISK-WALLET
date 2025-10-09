@@ -1,24 +1,24 @@
-# Obelisk Wallet — VOID Balance Integration (v1)
+# Wallet Sponsored Tx Composer (v2)
 
-This drop adds ERC‑20 balance reads for VoidStones ($VOID) to the Home screen.
+Adds a UI to encode calldata from an ABI and request **sponsor quotes**, with an optional **Send** button that works only if your relayer has ENABLE_EXECUTION=true.
 
-## What’s included
-- `src/lib/abi/erc20.ts` — minimal ERC‑20 ABI
-- `src/lib/format.ts` — bigint to decimal string formatter
-- `src/hooks/useErc20Balance.ts` — React hook to read balance via Ethers v6
-- `src/pages/Home.tsx` — updated to display connection + VOID balance
-- `.env.template` — now includes `VITE_VOID_ADDRESS`
+## Files
+- `src/components/SponsorComposerCard.tsx` — ABI input, function name + args, Encode → Quote / Send
+- `src/lib/api.ts` — adds `sponsorSend()` alongside `sponsorQuote()`
 
-## Setup
-1) In `OBELISK-WALLET`:
-```
-cp .env.template .env
-# set VITE_VOID_ADDRESS=0xYourVoidToken
-npm i
+## Apply
+```bash
+cd ~/dev/OBELISK-WALLET
+unzip ~/Downloads/obelisk_wallet_sponsored_tx_ui_v2.zip
+# Then in your Home.tsx, import and render the component:
+# import SponsorComposerCard from '../components/SponsorComposerCard';
+# ...
+# <SponsorComposerCard />
 npm run dev
 ```
-The balance will display after you connect your wallet and the token address is set.
 
-## Notes
-- Reads use `provider.getSigner()` to honor the connected account & network.
-- Error messaging prompts user to set `VITE_VOID_ADDRESS` if missing.
+## Relayer requirements
+- Target address must be allowlisted in relayer `.env` (lowercase): `TARGETS_ALLOWLIST=0x...`
+- Execution requires: `ENABLE_EXECUTION=true` and `SPONSOR_PRIVATE_KEY=0x<funded_key>` in relayer `.env`
+
+Drop: 2025-10-08T21:52:31.091292

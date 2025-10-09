@@ -1,54 +1,88 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ethers } from 'ethers';
-import { ERC20_ABI } from '../lib/abi/erc20';
-import { formatUnits } from '../lib/format';
+import { BrowserProvider, Contract, isAddress, formatUnits } from 'ethers';
 import { useWallet } from './useWallet';
 
-type Result = {
+type BalState = {
   loading: boolean;
-  error?: string;
+  balance?: string;
   symbol?: string;
   decimals?: number;
-  balance?: string;
+  error?: string;
 };
 
-export function useErc20Balance() : Result {
-  const { provider, address } = useWallet();
-  const token = (import.meta as any).env.VITE_VOID_ADDRESS as string | undefined;
+const ERC20_ABI = [
+  'function balanceOf(address) view returns (uint256)',
+  'function decimals() view returns (uint8)',
+  'function symbol() view returns (string)'
+];
 
-  const [state, setState] = useState<Result>({ loading: true });
+function norm(a?: string | null) {
+  if (!a) return undefined;
+  const s = a.trim();
+  return isAddress(s) ? s : undefined;
+}
+
+export function useErc20Balance(): BalState {
+  const { address } = useWallet();
+  const [state, setState] = useState<BalState>({ loading: false });
+
+  const tokenAddr = useMemo(() => {
+    const raw = (import.meta.env.VITE_VOID_ADDRESS as string | undefined)?.trim();
+    return raw && isAddress(raw) ? raw : undefined;
+  }, []);
 
   useEffect(() => {
-    let mounted = true;
+    let cancelled = false;
+
     async function run() {
-      if (!provider || !address) {
-        setState({ loading: false, error: 'Wallet not connected' });
+      setState({ loading: true });
+
+      const acct = norm(address);
+      const token = norm(tokenAddr);
+
+      // If token isn’t configured, just display defaults without an error hint.
+      if (!token) {
+        if (!cancelled) setState({ loading: false, balance: undefined, symbol: 'VoidStones (VOID)', decimals: 18 });
         return;
       }
-      if (!token || token.trim() === '') {
-        setState({ loading: false, error: 'Set VITE_VOID_ADDRESS in .env to your deployed token to enable balance reads.' });
-        return;
-      }
+
       try {
-        const signer = await provider.getSigner();
-        const contract = new ethers.Contract(token, ERC20_ABI, signer);
-        const [decimals, symbol, raw] = await Promise.all([
-          contract.decimals(),
-          contract.symbol(),
-          contract.balanceOf(address)
+        if (!(window as any).ethereum) {
+          if (!cancelled) setState({ loading: false, balance: undefined, symbol: 'VoidStones (VOID)', decimals: 18 });
+          return;
+        }
+        const provider = new BrowserProvider((window as any).ethereum);
+        const signerOrProv = await provider.getSigner().catch(() => provider);
+        const erc20 = new Contract(token, ERC20_ABI, signerOrProv);
+
+        // Always fetch symbol/decimals (with fallbacks)
+        const [decimals, symbol] = await Promise.all([
+          erc20.decimals().then((d: number) => Number(d)).catch(() => 18),
+          erc20.symbol().catch(() => 'VoidStones (VOID)')
         ]);
-        const bal = formatUnits(raw as bigint, Number(decimals));
-        if (!mounted) return;
-        setState({ loading: false, symbol, decimals: Number(decimals), balance: bal });
+
+        // If no account, just show token meta
+        if (!acct) {
+          if (!cancelled) setState({ loading: false, balance: undefined, symbol, decimals });
+          return;
+        }
+
+        const rawBal = await erc20.balanceOf(acct).catch(() => 0n);
+        const human = formatUnits(rawBal, decimals);
+        if (!cancelled) setState({ loading: false, balance: human, symbol, decimals });
       } catch (e: any) {
-        if (!mounted) return;
-        setState({ loading: false, error: e?.message || 'Failed to read balance' });
+        if (!cancelled) setState({
+          loading: false,
+          balance: undefined,
+          symbol: 'VoidStones (VOID)',
+          decimals: 18
+        });
       }
     }
-    setState({ loading: true });
+
     run();
-    return () => { mounted = false; };
-  }, [provider, address, token]);
+    return () => { cancelled = true; };
+  }, [address, tokenAddr]);
 
   return state;
 }
