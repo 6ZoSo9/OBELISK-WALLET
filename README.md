@@ -29,3 +29,8 @@ See LICENSE and CLA.md.
 ## License
 VOID Community License (VCL) v1.0 © 2025 6ZoSo9 and contributors.  
 See `LICENSE` for full terms.
+
+## Legal
+- License: VOID Community License (VCL) v1.0 — see `LICENSE`
+- Contributor License Agreement: see `CLA.md`
+- Trademarks & Branding: see `docs/legal/TRADEMARKS.md`
