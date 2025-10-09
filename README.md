@@ -25,3 +25,7 @@ See LICENSE and CLA.md.
 =======
 # obelisk-wallet
 >>>>>>> Stashed changes
+
+## License
+VOID Community License (VCL) v1.0 © 2025 6ZoSo9 and contributors.  
+See `LICENSE` for full terms.
